@@ -1,0 +1,44 @@
+﻿@using TaskApp.Entities
+@using TaskApp.HtmlHelpers
+
+@model TaskApp.Models.AppListModel
+
+@{
+    ViewBag.Title = "Приложения";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список приложений</h2>
+
+<table class="table-striped table-condensed table-bordered">
+
+    @Html.ActionLink("Оставить заявку на доработку", "Create", "Correction") |
+    @Html.ActionLink("Список заявок", "List", "Correction")
+
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
+        <th>Описание</th>
+    </tr>
+
+    @foreach (App item in Model.Apps)
+    {
+    <tr>
+        <td>
+            @item.AppId
+        </td>
+
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Description
+        </td>
+    </tr>
+    }
+
+</table>
+
+<div class="btn-group">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TaskApp.Entities.Correction>
+
+@{
+    ViewBag.Title = "Список заявок";
+}
+
+<h2>Список правок</h2>
+
+<p>
+    @Html.ActionLink("Создать заявку", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { corrId=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { corrId=item.id })
+        </td>
+    </tr>
+}
+
+</table>
